@@ -9,8 +9,7 @@
 }
 
 .image {
-  width: 1920px;
-  height: 400px;
+
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   background-color: var(--color-grey-700);

@@ -1,3 +1,5 @@
-function SinglePost () {}
+function SinglePost () {
+
+}
 
 export default SinglePost;

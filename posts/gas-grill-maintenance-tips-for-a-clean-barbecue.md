@@ -9,13 +9,13 @@ date: '2022-09-10'
 
 When it comes time to clean your barbeque, you will need some everyday household items on hand. 
 
-Brass wire grill brush
-Steel wool pads, preferably that contain soap already.
-Mild dish soap
-Sponge or dishcloth
-Spray cooking oil
-Dry baking soda
-Aluminium foil
+1. Brass wire grill brush
+1. Steel wool pads, preferably that contain soap already.
+1. Mild dish soap
+1. Sponge or dishcloth
+1. Spray cooking oil
+1. Dry baking soda
+1. Aluminium foil
 
 ## Step 2- Brushing Your Grill Off
 

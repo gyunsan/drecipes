@@ -4,13 +4,13 @@
   margin: var(--size-8) auto;
   font-size: var(--size-5);
   line-height: var(--size-8);
-  background-color: #f7f7f7;
+  background-color: #102531;
   border-radius: 6px;
   padding: var(--size-4);
 }
 
 .content p {
-  color: #000;
+  color: #f7f7f7;
 }
 
 .content .image {

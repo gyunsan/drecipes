@@ -1,34 +1,43 @@
-import Link from 'next/link';
+import Button from '../ui/button';
+import ArrowRightIcon from '../icons/arrow-right-icon';
+import classes from './recipe-item.module.css';
 
-function RecipeItem() {
-    const { title, image, date, location, id } = props;
+function RecipeItem(props) {
+  const { title, image, id, description, ingredients } = props;
 
-    const humanReadableDate = new Date(date).toLocaleDateString('en-US', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric',
-    });
+  // const humanReadableDate = new Date(date).toLocaleDateString('en-US', {
+  //   day: 'numeric',
+  //   month: 'long',
+  //   year: 'numeric',
+  // });
+  // const formattedAddress = location.replace(', ', '\n');
+  const exploreLink = `/recipes/${id}`;
 
-    const formatedAddress = location.replace(', ', '\n');
-    const exploreLink = `/recipes/${id}`;
-
-  return <li>
-    <img src={'/recipes/' + image} alt={title} />
-    <div>
-        <div>
-            <h2>{title}</h2>
+  return (
+    <li className={classes.item}>
+      <img src={'/' + image} alt={title} title={title} />
+      <div className={classes.content}>
+        <div className={classes.summary}>
+          <h2>{title}</h2>
+          <div className={classes.date}>
+            <p>{description}</p>
+          </div>
+          {/* <div className={classes.address}>
+            <AddressIcon />
+            <p>{instructions}</p>
+          </div> */}
         </div>
-        <div>
-            <time>{date}</time>
+        <div className={classes.actions}>
+          <Button link={exploreLink}>
+            <span>Explore Recipe</span>
+            <span className={classes.icon}>
+              <ArrowRightIcon />
+            </span>
+          </Button>
         </div>
-        <div>
-            <address>{formatedAddress}</address>
-        </div>
-        <div>
-            <Link href="/">Explore Recipe</Link>
-        </div>
-    </div>
-  </li>;
+      </div>
+    </li>
+  );
 }
 
 export default RecipeItem;

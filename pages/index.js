@@ -11,12 +11,11 @@ function HomePage(props) {
   return (
     <Fragment>
       <Head>
-
         <title>dRecipes</title>
         <meta name='description' content='Drecipes is a community focused on healthy recipes and lifestyles. A healthy lifestyle starts with good nutrition.' />
       </Head>
 
-      <Hero />
+      {/* <Hero /> */}
       <FeaturedPosts posts={props.posts} />
      {/* <RecipeList items={FeaturedRecipes} /> */}
 

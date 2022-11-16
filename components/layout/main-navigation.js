@@ -10,13 +10,13 @@ function MainNavigation() {
       <nav>
         <ul>
           <li>
-            <Link href='/posts'>Posts</Link>
+            <Link href='/blog'>Blog</Link>
           </li>
           <li>
             <Link href='/contact'>Contact</Link>
           </li>
           <li>
-          <Link href='/recipes'>Browse All Recipes</Link>
+          <Link href='/recipes'>All Recipes</Link>
           </li>
         </ul>
       </nav>

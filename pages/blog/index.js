@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { Fragment } from 'react';
 
-import AllPosts from '../../components/posts/all-posts';
+import AllPosts from '../../components/blog/all-posts';
 import { getAllPosts } from '../../lib/posts-util';
 
 function AllPostsPage(props) {

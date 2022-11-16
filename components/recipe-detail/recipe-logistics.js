@@ -1,6 +1,7 @@
 
 import LogisticsItem from './logistics-item';
 import classes from './recipe-logistics.module.css';
+import Image from 'next/image';
 
 function RecipeLogistics(props) {
   const { title, image, id, description, ingredients, category, instructions } = props;
@@ -8,7 +9,7 @@ function RecipeLogistics(props) {
   return (
     <section className={classes.logistics}>
       <div className={classes.image}>
-        <img src={`/${image}`} alt={title} />
+      <Image src={`/${image}`} alt={title} />
       </div>
       <ul className={classes.list}>
         <h2>Ingredients:</h2>

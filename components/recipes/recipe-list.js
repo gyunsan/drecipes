@@ -21,4 +21,5 @@ function RecipeList(props) {
   );
 }
 
+console.log("items")
 export default RecipeList;

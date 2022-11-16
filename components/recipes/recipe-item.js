@@ -3,7 +3,7 @@ import ArrowRightIcon from '../icons/arrow-right-icon';
 import classes from './recipe-item.module.css';
 
 function RecipeItem(props) {
-  const { title, image, id, description, ingredients } = props;
+  const { title, image, id, description, ingredients, category, instructions } = props;
 
   // const humanReadableDate = new Date(date).toLocaleDateString('en-US', {
   //   day: 'numeric',
@@ -22,10 +22,15 @@ function RecipeItem(props) {
           <div className={classes.date}>
             <p>{description}</p>
           </div>
-          {/* <div className={classes.address}>
-            <AddressIcon />
+          <div className={classes.date}>
+            <p>{ingredients}</p>
+          </div>
+          <div className={classes.date}>
+            <p>{category}</p>
+          </div>
+          <div className={classes.date}>
             <p>{instructions}</p>
-          </div> */}
+          </div>
         </div>
         <div className={classes.actions}>
           <Button link={exploreLink}>

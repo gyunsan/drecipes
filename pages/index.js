@@ -12,7 +12,7 @@ function HomePage(props) {
     <Fragment>
       <Head>
         <title>dRecipes</title>
-        <meta name='description' content='Drecipes is a community focused on healthy recipes and lifestyles. A healthy lifestyle starts with good nutrition.' />
+        <meta name='description' content='The most fun and simple way to eat better. The mission is to create a community of 100 million people who have improved their diet by 2050.' />
       </Head>
 
       {/* <Hero /> */}

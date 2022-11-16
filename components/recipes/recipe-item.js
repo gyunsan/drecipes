@@ -2,6 +2,7 @@ import Button from '../ui/button';
 import ArrowRightIcon from '../icons/arrow-right-icon';
 import classes from './recipe-item.module.css';
 import Image from 'next/image';
+import slugify from 'slugify';
 
 function RecipeItem(props) {
   const { title, image, id, description, ingredients, category, instructions } = props;
@@ -12,11 +13,12 @@ function RecipeItem(props) {
   //   year: 'numeric',
   // });
   // const formattedAddress = location.replace(', ', '\n');
-  const exploreLink = `/recipes/${id}`;
+  const exploreLink = `/recipes/${slugify(title).toLocaleLowerCase()}`;
 
   return (
     <li className={classes.item}>
-      <Image src={'/' + image} alt={title} title={title} />
+      <Image src={'/' + image} alt={title} title={title} width={300}
+              height={300}  />
       <div className={classes.content}>
         <div className={classes.summary}>
           <h2>{title}</h2>

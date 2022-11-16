@@ -1,8 +1,8 @@
 .logo {
-  text-transform: uppercase;
+  text-transform: lowercase;
   font-size: var(--size-5);
   font-weight: bold;
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Helvetica', sans-serif;
   color: #f7f7f7;
 }
 

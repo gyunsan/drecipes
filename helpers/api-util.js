@@ -1,7 +1,7 @@
-import RecipesSearch from "../components/recipes/recipes-search";
-
 export async function getAllRecipes() {
-  const response = await fetch("https://react-getting-started-4835f-default-rtdb.firebaseio.com/recipes.json");
+  const response = await fetch(
+    "https://react-getting-started-4835f-default-rtdb.firebaseio.com/recipes.json"
+  );
   const data = await response.json();
 
   const recipes = [];
@@ -21,8 +21,11 @@ export async function getFeaturedRecipes() {
   return allRecipes.filter((recipe) => recipe.isFeatured);
 }
 
-
-export async function getRecipeById(id) {
+export async function getRecipeByTitle(title) {
   const allRecipes = await getAllRecipes();
-  return allRecipes.find((recipe) => recipe.id === id);
+
+  const recipe = allRecipes.find(
+    (recipe) => recipe.title.toLocaleLowerCase() === title.split("-").join(" ")
+  );
+  return recipe;
 }

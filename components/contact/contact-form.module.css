@@ -1,7 +1,7 @@
 .contact {
   margin: var(--size-8) auto;
   border-radius: 6px;
-  background-color:#102531;
+  background-color:#fff;
   width: 90%;
   max-width: 50rem;
   padding: var(--size-4);
@@ -51,16 +51,16 @@
 .form button {
   font: inherit;
   cursor: pointer;
-  background-color: #094148;
+  background-color: #fff;
   border: 1px solid var(--color-primary-900);
   padding: var(--size-2) var(--size-4);
   border-radius: 4px;
-  color: #F7F7F7;
+  color: var(--color-grey-900);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
 
 .form button:hover {
-  background-color: #0c5a65;
+  background-color: var(--color-grey-50);
   border-color: var(--color-primary-900);
 }
 
@@ -68,6 +68,6 @@
   .contact h1 {
     font-size: var(--size-16);
     text-align: center;
-    color: #f7f7f7;
+    color: #000;
     }
 }

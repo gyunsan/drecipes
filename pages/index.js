@@ -11,7 +11,7 @@ function HomePage(props) {
   return (
     <Fragment>
       <Head>
-        <title>dRecipes</title>
+        <title>drecipes</title>
         <meta name='description' content='The most fun and simple way to eat better. The mission is to create a community of 100 million people who have improved their diet by 2050.' />
       </Head>
 

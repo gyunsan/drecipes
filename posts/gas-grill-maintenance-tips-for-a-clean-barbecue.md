@@ -18,6 +18,7 @@ When it comes time to clean your barbeque, you will need some everyday household
 1. Aluminium foil
 
 ## Step 2- Brushing Your Grill Off
+![Brushing Your Grill Off!](clean-your-racks.jpg)
 
 The first thing that should always be done to your grill is a routine brushing. Using your brass wire grill brush (or other brush suitable to your type of grill) you should brush off all the surfaces. By routinely brushing your barbeque grill, you will prevent any type of buildup. If buildup from food is left to long, it can become increasingly difficult to remove. 
 

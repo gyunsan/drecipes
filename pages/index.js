@@ -19,7 +19,6 @@ function HomePage(props) {
         />
       </Head>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt USD-88452914 ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-     <p>A</p>
       {/* <Hero /> */}
       <FeatureRecipes recipes={props.recipes} />
       <FeaturedPosts posts={props.posts} />

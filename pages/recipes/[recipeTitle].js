@@ -8,7 +8,7 @@ import ErrorAlert from "../../components/ui/error-alert";
 import slugify from "slugify";
 
 function RecipeDetailPage(props) {
-  const recipe = props.seletedRecipe;
+  const recipe = props.selectedRecipe;
 
   if (!recipe) {
     return (
@@ -37,7 +37,6 @@ function RecipeDetailPage(props) {
 export async function getStaticProps(context) {
   const recipeTitle = context.params.recipeTitle;
   const recipe = await getRecipeByTitle(recipeTitle);
-
   return {
     props: {
       selectedRecipe: recipe || "",

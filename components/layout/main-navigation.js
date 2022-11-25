@@ -9,14 +9,14 @@ function MainNavigation() {
       <Link href='/'><Logo /></Link>
       <nav>
         <ul>
+        <li>
+          <Link href='/recipes'>Recipes</Link>
+          </li>
           <li>
             <Link href='/blog'>Blog</Link>
           </li>
           <li>
             <Link href='/contact'>Contact</Link>
-          </li>
-          <li>
-          <Link href='/recipes'>All Recipes</Link>
           </li>
         </ul>
       </nav>

@@ -4,6 +4,13 @@
   text-align: center;
 }
 
+.feature {
+  border: 1px solid green;
+  background-color: green;
+  width: 100px;
+  position: absolute;
+}
+
 .post a {
   color: var(--color-grey-100);
 }

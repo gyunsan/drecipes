@@ -1,6 +1,8 @@
+import slugify from "slugify";
+
 export async function getAllRecipes() {
   const response = await fetch(
-    "https://react-getting-started-4835f-default-rtdb.firebaseio.com/recipes.json"
+    "https://react-getting-started-4835f-default-rtdb.firebaseio.com/recipes.json",
   );
   const data = await response.json();
 
@@ -24,8 +26,8 @@ export async function getFeaturedRecipes() {
 export async function getRecipeByTitle(title) {
   const allRecipes = await getAllRecipes();
 
-  const recipe = allRecipes.find(
-    (recipe) => recipe.title.toLocaleLowerCase() === title.split("-").join(" ")
-  );
+  const recipe = allRecipes.find((recipe) => {
+    return slugify(recipe.title).toLocaleLowerCase() === title;
+  });
   return recipe;
 }

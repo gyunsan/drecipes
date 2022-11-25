@@ -6,12 +6,12 @@
 
 .latest h2 {
   font-size: var(--size-8);
-  color: #759aa7;
+  color: #000000;
   text-align: center;
 }
 
 @media (min-width: 768px) {
   .latest h2 {
-    font-size: var(--size-16);
+    /* font-size: var(--size-16); */
   }
 }

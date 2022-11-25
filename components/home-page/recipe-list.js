@@ -1,4 +1,4 @@
-import RecipeItem from "./recipe-item";
+import RecipeItem from "../recipes/recipe-item";
 import classes from "./recipe-list.module.css";
 
 function RecipeList(props) {

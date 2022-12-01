@@ -33,7 +33,7 @@ function RecipeList(props) {
             <h3 className=" md:text-3xl sm:text-base ml-4">Desserts</h3>
           </div>
         </div>
-        <ul className={classes.list}>
+        <ul className={`grid md:grid-cols-3 xl:grid-cols-4 gap-3 p-3`}>
           {items.map((recipe) => (
             <RecipeItem
               key={recipe.id}

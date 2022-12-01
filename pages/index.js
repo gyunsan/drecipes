@@ -8,7 +8,6 @@ import { getFeaturedRecipes } from "../helpers/api-util";
 import { getFeaturedPosts } from "../lib/posts-util";
 
 function HomePage(props) {
-  console.log(props);
   return (
     <Fragment>
       <Head>
@@ -18,7 +17,12 @@ function HomePage(props) {
           content="The most fun and simple way to eat better. The mission is to create a community of 100 million people who have improved their diet by 2050."
         />
       </Head>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt USD-88452914 ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt USD-88452914 ut labore et dolore magna aliqua. Ut enim
+        ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+        aliquip ex ea commodo consequat.{" "}
+      </p>
       {/* <Hero /> */}
       <FeatureRecipes recipes={props.recipes} />
       <FeaturedPosts posts={props.posts} />

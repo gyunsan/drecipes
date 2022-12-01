@@ -1,8 +1,8 @@
-import { Fragment } from 'react';
-import { useRouter } from 'next/router';
+import { Fragment } from "react";
+import { useRouter } from "next/router";
 
-import { getAllRecipes } from '../../helpers/api-util';
-import RecipeList from '../../components/recipes/recipe-list';
+import { getAllRecipes } from "../../helpers/api-util";
+import RecipeList from "../../components/recipes/recipe-list";
 // import RecipesSearch from '../../components/recipes/recipes-search';
 
 function AllRecipesPage(props) {
@@ -17,7 +17,7 @@ function AllRecipesPage(props) {
 
   return (
     <Fragment>
-      {/* <RecipesSearch onSearch={findRecipesHandler} /> */} 
+      {/* <RecipesSearch onSearch={findRecipesHandler} /> */}
       <RecipeList items={recipes} />
     </Fragment>
   );
@@ -30,7 +30,7 @@ export async function getStaticProps() {
     props: {
       recipes: recipes,
     },
-    revalidate: 60
+    revalidate: 60,
   };
 }
 

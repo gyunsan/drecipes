@@ -8,9 +8,11 @@
     "start": "next start"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.4",
     "axios": "^1.2.0",
     "dashify": "^2.0.0",
     "eslint-config-next": "^13.0.3",
+    "font-awesome": "^4.7.0",
     "gray-matter": "^4.0.2",
     "mongodb": "^3.6.4",
     "next": "^13.0.3",

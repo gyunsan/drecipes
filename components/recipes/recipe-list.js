@@ -3,16 +3,21 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import Drawer from "../drawer/drawer";
 import RecipeItem from "./recipe-item";
-import ImageSrc from "../../asset/menu.gif";
+import ImageSrc from "../../asset/bars-solid.svg";
 import CategoryList from "./category.list";
 import { useRouter } from "next/router";
 import slugify from "slugify";
-import { getAllRecipes } from "../../helpers/api-util";
+import {
+  getAllRecipes,
+  getAllRecipesWithAllData,
+} from "../../helpers/api-util";
 import dynamic from "next/dynamic";
 import RecipesSearch from "./recipes-search";
+import Autocomplete, { MyCombobox } from "../search/Autocomplete";
 const Pagination = dynamic(() => import("./pagination"));
 
 function RecipeList(props) {
+  const [selectedOption, setSelectedOption] = useState("");
   const {
     items,
     categories,
@@ -49,6 +54,16 @@ function RecipeList(props) {
     })();
   }, [category, page, search]);
 
+  const [options, setOptions] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const allRecipes = await getAllRecipesWithAllData();
+      const options = allRecipes.map((recipe) => recipe.title);
+      setOptions(options);
+    })();
+  }, []);
+
   return (
     <div className="drawer drawer-mobile">
       <div className="drawer-content">
@@ -66,8 +81,8 @@ function RecipeList(props) {
               categories={categories}
             />
           </div>
-          <div className="md:col-span-10">
-            <div className="md:flex pb-3 my-4 md:flex-column justify-between align-middle border-b-2 relative border-b-gray-light">
+          <div className="md:col-span-10 pb-5">
+            <div className="md:flex pb-3 my-4 md:flex-column justify-between align-middle border-b-2 relative   border-b-gray-light">
               <div className="relative">
                 <span className="inline-block md:hidden absolute left-3">
                   <span
@@ -91,7 +106,7 @@ function RecipeList(props) {
                     categories={categories}
                   />
                 </Drawer>
-                <p className="relative left-9">
+                <p className="relative left-10 w-4/5">
                   <a
                     className="hover:underline cursor-pointer"
                     onClick={() => setCategory("")}
@@ -109,7 +124,11 @@ function RecipeList(props) {
             </div>
             <div>
               <div>
-                <RecipesSearch search={search} setSearch={setSearch} />
+                <RecipesSearch
+                  options={options}
+                  search={search}
+                  setSearch={setSearch}
+                />
               </div>
             </div>
 

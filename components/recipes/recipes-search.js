@@ -1,15 +1,22 @@
 import { useState } from "react";
 import { useRef } from "react";
+import Autocomplete from "../search/Autocomplete";
 
 import Button from "../ui/button";
 import classes from "./recipes-search.module.css";
 
-function RecipesSearch({ setSearch, search }) {
+function RecipesSearch({ setSearch, search, options }) {
   const [searchKeys, setSearchKeys] = useState(search);
+
   return (
     <form className={classes.form}>
       <div className={classes.controls}>
-        <input
+        <Autocomplete
+          options={options}
+          value={searchKeys}
+          onChange={setSearchKeys}
+        />
+        {/* <input
           onChange={(e) => setSearchKeys(e.target.value)}
           type="search"
           class="
@@ -31,7 +38,7 @@ function RecipesSearch({ setSearch, search }) {
       "
           id="exampleSearch"
           placeholder="Recipe search by title"
-        />
+        /> */}
       </div>
       <Button type={"button"} onClick={() => setSearch(searchKeys)}>
         Find Recipes

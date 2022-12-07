@@ -3,11 +3,30 @@
   height: 6rem;
   background-color: #102531;
   display: flex;
+
+
+
   justify-content: space-between;
   align-items: center;
   padding: 0 10%;
-  font-family: 'Helvetica', sans-serif;
+  font-family: 'Helvetica',
+    sans-serif;
   position: relative;
+}
+
+@media (max-width: 500px) {
+  .header {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .header li {
+    margin: 0;
+  }
+
+  .header ul {
+    gap: 0px !important;
+  }
 }
 
 .header ul {

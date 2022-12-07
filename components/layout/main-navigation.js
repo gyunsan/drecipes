@@ -7,14 +7,18 @@ import classes from "./main-navigation.module.css";
 function MainNavigation() {
   return (
     <header className={classes.header}>
-      <Link href="/">
+      <Link className="sm:block" href="/">
         <Logo />
       </Link>
-      <nav>
+      <nav className="sm:flex">
         <ul>
           <li>
             <Link href="/recipes">Recipes</Link>
           </li>
+          <li>
+            <Link href="/hamburger">Hamburger</Link>
+          </li>
+
           <li>
             <Link href="/blog">Blog</Link>
           </li>

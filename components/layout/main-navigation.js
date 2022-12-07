@@ -1,22 +1,25 @@
-import Link from 'next/link';
+import Link from "next/link";
+import React from "react";
 
-import Logo from './logo';
-import classes from './main-navigation.module.css';
+import Logo from "./logo";
+import classes from "./main-navigation.module.css";
 
 function MainNavigation() {
   return (
     <header className={classes.header}>
-      <Link href='/'><Logo /></Link>
+      <Link href="/">
+        <Logo />
+      </Link>
       <nav>
         <ul>
-        <li>
-          <Link href='/recipes'>Recipes</Link>
+          <li>
+            <Link href="/recipes">Recipes</Link>
           </li>
           <li>
-            <Link href='/blog'>Blog</Link>
+            <Link href="/blog">Blog</Link>
           </li>
           <li>
-            <Link href='/contact'>Contact</Link>
+            <Link href="/contact">Contact</Link>
           </li>
         </ul>
       </nav>

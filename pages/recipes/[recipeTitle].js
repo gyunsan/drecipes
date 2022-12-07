@@ -1,6 +1,10 @@
 import { Fragment } from "react";
 
-import { getRecipeByTitle, getAllRecipes } from "../../helpers/api-util";
+import {
+  getRecipeByTitle,
+  getAllRecipes,
+  getAllRecipesWithAllData,
+} from "../../helpers/api-util";
 import RecipeSummary from "../../components/recipe-detail/recipe-summary";
 import RecipeLogistics from "../../components/recipe-detail/recipe-logistics";
 import RecipeContent from "../../components/recipe-detail/recipe-content";
@@ -46,7 +50,7 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  const recipes = await getAllRecipes();
+  const recipes = await getAllRecipesWithAllData();
 
   const paths = recipes.map((recipe) => ({
     params: { recipeTitle: slugify(recipe.title).toLocaleLowerCase() },

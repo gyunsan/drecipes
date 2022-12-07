@@ -1,52 +1,135 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import Image from "next/image";
 import { useEffect, useState } from "react";
+import Drawer from "../drawer/drawer";
 import RecipeItem from "./recipe-item";
-import classes from "./recipe-list.module.css";
+import ImageSrc from "../../asset/menu.gif";
+import CategoryList from "./category.list";
+import { useRouter } from "next/router";
+import slugify from "slugify";
+import { getAllRecipes } from "../../helpers/api-util";
+import dynamic from "next/dynamic";
+import RecipesSearch from "./recipes-search";
+const Pagination = dynamic(() => import("./pagination"));
 
 function RecipeList(props) {
-  const { items } = props;
+  const {
+    items,
+    categories,
+    category: preCategory,
+    search: preSearch = "",
+  } = props;
+  const [isOpen, setIsOpen] = useState(false);
 
-  const [category, setCategory] = useState();
+  const [search, setSearch] = useState(preSearch);
+
+  const [recipes, setRecipes] = useState(items);
+
+  const [category, setCategory] = useState(preCategory);
+
+  const { query, push, pathname } = useRouter();
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
-    //get desserts category
-  }, []);
+    (async () => {
+      push(
+        pathname,
+        {
+          query: {
+            category: slugify(category),
+            page,
+            search,
+          },
+        },
+        { shallow: true },
+      );
+
+      const response = await getAllRecipes({ category, page, search });
+      setRecipes(response);
+    })();
+  }, [category, page, search]);
 
   return (
-    <div className="grid  grid-cols-12 px-3">
-      <div className="col-span-2 border-r-2  border-r-gray-light">
-        <div className="py-3 my-4 pb-6 border-b-2 border-b-gray-light">
-          <h3 className=" md:text-3xl sm:text-base">Categories</h3>
-        </div>
-        <div>
-          <a className="my-2 line-clamp-1 underline cursor-pointer capitalize">
-            Categories1
-          </a>
-          <a className="my-2 line-clamp-1 underline cursor-pointer capitalize">
-            category2
-          </a>
-        </div>
-      </div>
-      <div className="col-span-10">
-        <div className="col-span-2 ">
-          <div className="pb-3 my-4 border-b-2 border-b-gray-light">
-            <p className="ml-4">Recipes / Desserts</p>
-            <h3 className=" md:text-3xl sm:text-base ml-4">Desserts</h3>
+    <div className="drawer drawer-mobile">
+      <div className="drawer-content">
+        <div className="grid md:grid-cols-12 px-3 ">
+          <div className="hidden md:flex flex-col col-span-2 border-r-2 overflow-auto sticky   border-r-gray-light">
+            <div className="py-3 my-4 pb-6 border-b-2 border-b-gray-light">
+              <h3 className=" md:text-3xl sm:text-base">Categories</h3>
+            </div>
+            <CategoryList
+              setCategory={(cate) => {
+                setCategory(cate);
+                setPage(1);
+                setSearch("");
+              }}
+              categories={categories}
+            />
+          </div>
+          <div className="md:col-span-10">
+            <div className="md:flex pb-3 my-4 md:flex-column justify-between align-middle border-b-2 relative border-b-gray-light">
+              <div className="relative">
+                <span className="inline-block md:hidden absolute left-3">
+                  <span
+                    onClick={() => setIsOpen(!isOpen)}
+                    className="cursor-pointer flex flex-col items-center justify-center"
+                  >
+                    <Image alt={"menu"} src={ImageSrc} width={20} height={20} />
+                  </span>
+                </span>
+                <Drawer
+                  categories={categories}
+                  isOpen={isOpen}
+                  setIsOpen={setIsOpen}
+                >
+                  <CategoryList
+                    setCategory={(cate) => {
+                      setCategory(cate);
+                      setPage(1);
+                      setSearch("");
+                    }}
+                    categories={categories}
+                  />
+                </Drawer>
+                <p className="relative left-9">
+                  <a
+                    className="hover:underline cursor-pointer"
+                    onClick={() => setCategory("")}
+                  >
+                    Recipes
+                  </a>
+                  {category ? ` / ${category} ` : ""}
+                </p>
+                <h3 className=" md:text-3xl sm:text-base ml-4">
+                  {category || "All Recipes"}
+                </h3>
+              </div>
+
+              <Pagination total={recipes.total} page={page} setPage={setPage} />
+            </div>
+            <div>
+              <div>
+                <RecipesSearch search={search} setSearch={setSearch} />
+              </div>
+            </div>
+
+            <ul className={`grid md:grid-cols-3 xl:grid-cols-4 gap-3 p-3`}>
+              {recipes.limitedRecipes.map((recipe) => (
+                <RecipeItem
+                  key={recipe.id}
+                  id={recipe.id}
+                  title={recipe.title}
+                  instructions={recipe.instructions}
+                  ingredients={recipe.ingredients}
+                  image={recipe.image}
+                  isFeatured={recipe.isFeatured}
+                  description={recipe.description}
+                />
+              ))}
+            </ul>
+            <Pagination total={recipes.total} page={page} setPage={setPage} />
           </div>
         </div>
-        <ul className={`grid md:grid-cols-3 xl:grid-cols-4 gap-3 p-3`}>
-          {items.map((recipe) => (
-            <RecipeItem
-              key={recipe.id}
-              id={recipe.id}
-              title={recipe.title}
-              instructions={recipe.instructions}
-              ingredients={recipe.ingredients}
-              image={recipe.image}
-              isFeatured={recipe.isFeatured}
-              description={recipe.description}
-            />
-          ))}
-        </ul>
       </div>
     </div>
   );

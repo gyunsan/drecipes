@@ -5,7 +5,7 @@ function RecipeList(props) {
   const { items } = props;
 
   return (
-    <ul className={classes.list}>
+    <ul className={`grid md:grid-cols-3 xl:grid-cols-4 gap-3 p-3r`}>
       {items.map((recipe) => (
         <RecipeItem
           key={recipe.id}
@@ -22,5 +22,4 @@ function RecipeList(props) {
   );
 }
 
-console.log("items");
 export default RecipeList;

@@ -1,13 +1,13 @@
-import { Fragment } from "react";
 import { useRouter } from "next/router";
+import { Fragment } from "react";
 
-import { getAllRecipes } from "../../helpers/api-util";
 import RecipeList from "../../components/recipes/recipe-list";
-// import RecipesSearch from '../../components/recipes/recipes-search';
+import { getAllCategory, getAllRecipes } from "../../helpers/api-util";
+// import RecipesSearch from "../../components/recipes/recipes-search";
 
 function AllRecipesPage(props) {
   const router = useRouter();
-  const { recipes } = props;
+  const { recipes, categories = [], category = "" } = props;
 
   function findRecipesHandler(year, month) {
     const fullPath = `/recipes/${year}/${month}`;
@@ -17,21 +17,32 @@ function AllRecipesPage(props) {
 
   return (
     <Fragment>
-      {/* <RecipesSearch onSearch={findRecipesHandler} /> */}
-      <RecipeList items={recipes} />
+      <RecipeList category={category} items={recipes} categories={categories} />
     </Fragment>
   );
 }
 
-export async function getStaticProps() {
-  const recipes = await getAllRecipes();
-
-  return {
-    props: {
-      recipes: recipes,
-    },
-    revalidate: 60,
-  };
+export async function getServerSideProps({ query }) {
+  try {
+    const recipes = await getAllRecipes(query);
+    const categories = await getAllCategory();
+    return {
+      props: {
+        recipes: recipes,
+        categories: categories,
+        ...query,
+      },
+    };
+  } catch (err) {
+    console.log(err);
+    return {
+      props: {
+        recipes: { limitedRecipes: [], total: 0 },
+        categories: [],
+        ...query,
+      },
+    };
+  }
 }
 
 export default AllRecipesPage;

@@ -16,12 +16,7 @@ export default function Drawer({ isOpen, children, setIsOpen }) {
           (isOpen ? " translate-x-0 " : " translate-x-full ")
         }
       >
-        <article className="relative m-5 w-64 pb-10 flex flex-col space-y-6 overflow-y-scroll h-full">
-          <div className="py-1 my-4 pb-6 border-b-2 border-b-gray-light">
-            <h3 className="text-xl ">Categories</h3>
-          </div>
-          <div>{children}</div>
-        </article>
+        {children}
       </section>
       <section
         className=" w-screen h-full cursor-pointer "

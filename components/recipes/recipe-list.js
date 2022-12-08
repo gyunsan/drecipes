@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Drawer from "../drawer/drawer";
 import RecipeItem from "./recipe-item";
 import ImageSrc from "../../asset/bars-solid.svg";
@@ -14,6 +14,7 @@ import {
 import dynamic from "next/dynamic";
 import RecipesSearch from "./recipes-search";
 import Autocomplete, { MyCombobox } from "../search/Autocomplete";
+import { SearchContact } from "../layout/layout";
 const Pagination = dynamic(() => import("./pagination"));
 
 function RecipeList(props) {
@@ -26,11 +27,10 @@ function RecipeList(props) {
   } = props;
   const [isOpen, setIsOpen] = useState(false);
 
-  const [search, setSearch] = useState(preSearch);
-
   const [recipes, setRecipes] = useState(items);
 
   const [category, setCategory] = useState(preCategory);
+  const { search, setSearch } = useContext(SearchContact);
 
   const { query, push, pathname } = useRouter();
   const [page, setPage] = useState(1);
@@ -53,16 +53,6 @@ function RecipeList(props) {
       setRecipes(response);
     })();
   }, [category, page, search]);
-
-  const [options, setOptions] = useState([]);
-
-  useEffect(() => {
-    (async () => {
-      const allRecipes = await getAllRecipesWithAllData();
-      const options = allRecipes.map((recipe) => recipe.title);
-      setOptions(options);
-    })();
-  }, []);
 
   return (
     <div className="drawer drawer-mobile">
@@ -97,14 +87,22 @@ function RecipeList(props) {
                   isOpen={isOpen}
                   setIsOpen={setIsOpen}
                 >
-                  <CategoryList
-                    setCategory={(cate) => {
-                      setCategory(cate);
-                      setPage(1);
-                      setSearch("");
-                    }}
-                    categories={categories}
-                  />
+                  <article className="relative m-5 w-64 pb-10 flex flex-col space-y-6 overflow-y-scroll h-full">
+                    <div className="py-1 my-4 pb-6 border-b-2 border-b-gray-light">
+                      <h3 className="text-xl ">Categories</h3>
+                    </div>
+                    <div>
+                      <CategoryList
+                        setCategory={(cate) => {
+                          setCategory(cate);
+                          setPage(1);
+                          setIsOpen(false);
+                          setSearch("");
+                        }}
+                        categories={categories}
+                      />
+                    </div>
+                  </article>
                 </Drawer>
                 <p className="relative left-10 w-4/5">
                   <a
@@ -121,15 +119,6 @@ function RecipeList(props) {
               </div>
 
               <Pagination total={recipes.total} page={page} setPage={setPage} />
-            </div>
-            <div>
-              <div>
-                <RecipesSearch
-                  options={options}
-                  search={search}
-                  setSearch={setSearch}
-                />
-              </div>
             </div>
 
             <ul className={`grid md:grid-cols-3 xl:grid-cols-4 gap-3 p-3`}>

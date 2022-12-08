@@ -6,8 +6,8 @@ export default function Autocomplete({ options, value, onChange }) {
   const ref = useRef();
 
   const select = (option) => {
-    onChange(option);
     setShowOptions(false);
+    onChange(option);
   };
 
   const handleChange = (text) => {
@@ -67,10 +67,12 @@ export default function Autocomplete({ options, value, onChange }) {
   return (
     <div className="relative w-full  " ref={ref}>
       <input
+        placeholder="search recipes"
         type="text"
         className="form-control
         block
         w-full
+        borderr
         px-3
         py-1.5
         text-base
@@ -78,10 +80,11 @@ export default function Autocomplete({ options, value, onChange }) {
         text-gray-700
      bg-clip-padding
         border border-solid
-        rounded
+        rounded-xl	
         transition
         ease-in-out
         m-0
+        
         focus:text-gray-700 focus:bg-white focus:border-primary focus:outline-none
       "
         value={value}
@@ -91,19 +94,20 @@ export default function Autocomplete({ options, value, onChange }) {
       />
 
       <ul
-        className={`absolute w-full rounded-lg shadow-lg ${
+        className={`absolute w-full bg-white  z-50 flex flex-col rounded-lg shadow-lg ${
           !showOptions && "hidden"
         } select-none z-50`}
       >
-        {filteredOptions.length > 0 ? (
+        {showOptions && filteredOptions.length > 0 ? (
           filteredOptions.slice(0, 4).map((option, i, arr) => {
-            let className = "px-4 bg-white hover:bg-gray-light ";
+            let className = " bg-white w-full  hover:bg-gray-light ";
 
-            if (i === 0) className += "pt-2 pb-1 rounded-t-lg";
-            else if (i === arr.length) className += "pt-1 pb-2 rounded-b-lg";
+            if (i === 0) className += "pt-2 pl-3 pb-1 rounded-t-lg";
+            else if (i === arr.length)
+              className += "pt-1 pl-3  pb-2 rounded-b-lg";
             else if (i === 0 && arr.length === 1)
-              className += "py-2 rounded-lg";
-            else className += "py-1";
+              className += "py-2 pl-3  rounded-lg";
+            else className += " pl-3  py-1";
 
             if (cursor === i) {
               className += " bg-white";
